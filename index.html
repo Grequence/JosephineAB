@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body::before{
+                        content:"";
+                        position:fixed;
+                        top:0;
+                        left:0;
+                        width:100%;
+                        height:100%;
+                        background: linear-gradient(
+                            135deg,
+                            rgba(255,154,158,0.85),
+                            rgba(254,207,239,0.85)
+                        );
+                        z-index:0;
+                    }
+
+
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            position: relative;
+            max-width: 600px;
+            width: 90%;
+            z-index: 5; 
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        .heart {
+            font-size: 4em;
+            margin: 20px 0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        p {
+            color: #6c757d;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.3em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .yes-btn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.6);
+        }
+
+        .no-btn {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+            position: relative;
+            transition: all 0.2s ease-out;
+        }
+
+        .success {
+            display: none;
+            animation: fadeIn 1s ease;
+        }
+
+        .success h2 {
+            color: #28a745;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe0e6 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #ff6b9d;
+            animation: slideIn 0.8s ease;
+        }
+
+        .success-message p {
+            color: #d63384;
+            font-size: 1.4em;
+            line-height: 1.6;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .highlight {
+            color: #e91e63;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .emoji-bounce {
+            display: inline-block;
+            animation: bounce 1s infinite;
+        }
+
+        .fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainContainer">
+        <div id="questionSection">
+            <h1>✮⋆˙𝒥𝑜𝓈𝑒𝓅𝒽𝒾𝓃𝑒  ִֶָ☾., 𝒲𝒾𝓁𝓁 𝓎𝑜𝓊 𝒷𝑒 𝓂𝓎 𝒱𝒶𝓁𝑒𝓃𝓉𝒾𝓃𝑒𓂃 ࣪˖ ִֶָ🐇་༘࿐?</h1>
+            <div class="heart">💖</div>
+            <p>Across every mile and every moment, my heart keeps choosing you
+love songs make sense because you exist,ℳ𝑦 ℒ𖹭𝑣𝑒,my addition❦</p>
+            
+            <div class="buttons" id="buttonContainer">
+                <button class="yes-btn" onclick="sayYes()">Yes 💚</button>
+                <button class="no-btn" id="noBtn" onmouseover="moveButton()" onclick="moveButton()">No ❌</button>
+            </div>
+        </div>
+
+        <div class="success" id="successSection">
+            <h2>SHE Said YES! 🎉🫶🏻🥹</h2>
+            <div class="heart">💕</div>
+            
+        
+            <div class="success-message">
+            <p>
+                <span class="highlight">“And just like that, my heart found its favorite place again.”</span> 😌💖<br><br>
+                Thank you for being my Valentine, I promise to make every moment worthy of tha yes
+                <span class="emoji-bounce">😊</span><br><br>
+                <em>Distance or not, I want that day to be about us💝</em>
+            </p>
+            </div>
+
+          <p style="margin-top: 20px; font-size: 1.2em; color: #ff6b9d;">JOSIE, I LOVE YOU SOOO MUCH</p>
+
+
+        </div>
+    </div>
+
+    <canvas class="fireworks" id="fireworks"></canvas>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        
+        function moveButton() {
+            // Get viewport dimensions
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            
+            // Get button dimensions
+            const btnRect = noBtn.getBoundingClientRect();
+            const btnWidth = btnRect.width;
+            const btnHeight = btnRect.height;
+            
+            // Calculate random position within viewport (with padding)
+            const padding = 20;
+            const maxX = viewportWidth - btnWidth - padding;
+            const maxY = viewportHeight - btnHeight - padding;
+            
+            const randomX = Math.random() * (maxX - padding) + padding;
+            const randomY = Math.random() * (maxY - padding) + padding;
+            
+            // Apply new position fixed to viewport
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+            noBtn.style.zIndex = '9999';
+        }
+
+        function sayYes() {
+            document.getElementById('questionSection').style.display = 'none';
+            document.getElementById('successSection').style.display = 'block';
+            startFireworks();
+        }
+
+        function startFireworks() {
+            const canvas = document.getElementById('fireworks');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const particles = [];
+            const colors = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#54a0ff', '#5f27cd', '#ff6b9d'];
+
+            function createFirework() {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height * 0.5;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                for (let i = 0; i < 40; i++) {
+                    particles.push({
+                        x: x,
+                        y: y,
+                        vx: (Math.random() - 0.5) * 12,
+                        vy: (Math.random() - 0.5) * 12,
+                        life: 100,
+                        color: color,
+                        size: Math.random() * 4 + 2
+                    });
+                }
+            }
+
+            function animate() {
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    const p = particles[i];
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += 0.08;
+                    p.life--;
+                    p.vx *= 0.99;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.fill();
+
+                    if (p.life <= 0) {
+                        particles.splice(i, 1);
+                    }
+                }
+
+                if (Math.random() < 0.08) {
+                    createFirework();
+                }
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+
+        window.addEventListener('resize', () => {
+            const canvas = document.getElementById('fireworks');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
